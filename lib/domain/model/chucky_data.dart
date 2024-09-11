@@ -187,3 +187,38 @@ class EnumValues<T> {
     return reverseMap;
   }
 }
+
+class GroupCardHome {
+  final String name;
+  final String image;
+  final String? info;
+
+  GroupCardHome({
+    required this.name,
+    required this.image,
+    this.info,
+  });
+
+  Map<String, dynamic> toJson() => {
+        "name": name,
+        "image": image,
+        "info": info,
+      };
+
+  factory GroupCardHome.fromJson(Map<String, dynamic> json) => GroupCardHome(
+        name: json["name"] ?? '',
+        image: json["image"] ?? '',
+        info: json["info"],
+      );
+
+  static List<GroupCardHome> convertGroupsToCardHomes(
+      List<ChuckyListGroup> groups) {
+    return groups
+        .map((group) => GroupCardHome(
+              name: group.name,
+              image: group.image,
+              info: group.info.isNotEmpty ? group.info : null,
+            ))
+        .toList();
+  }
+}

@@ -5,7 +5,8 @@ const String hostPin = "2626";
 const String baseUrl =
     'https://raw.githubusercontent.com/chukyvaliente/Chuky-Hood/main/Chuky-Hood';
 
-// Error const
+// Error
 const String wrongPin = "El pin introducido no es correcto";
 const String socketError = "Error en la conexion";
 const String accessDenied = "Acceso a la APP no autorizado";
+const String emptyPin = "No has introducido ningun pin";

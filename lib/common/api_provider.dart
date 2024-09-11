@@ -16,7 +16,7 @@ class ApiProvider {
     }
   }
 
-  void fetchData() async {
+  Future<List<GroupCardHome>> getCardsGroupHome() async {
     final Dio dio = Dio();
 
     try {
@@ -25,12 +25,15 @@ class ApiProvider {
       if (response.data is String) {
         final ChuckyList chuckyData = chuckyListFromJson(response.data);
 
-        print(chuckyData.groups.map((ChuckyListGroup first) => first.name));
+        final List<GroupCardHome> homeScreenCards =
+            GroupCardHome.convertGroupsToCardHomes(chuckyData.groups);
+
+        return homeScreenCards;
       } else {
-        print('El formato de datos no es correcto');
+        return [];
       }
     } catch (e) {
-      print('Exception: $e');
+      throw Exception("$e");
     }
   }
 }
